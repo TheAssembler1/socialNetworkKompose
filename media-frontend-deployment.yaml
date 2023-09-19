@@ -48,6 +48,6 @@ spec:
             type: Directory
         - name: nginx-conf
           hostPath:
-            path: /home/vm_test/DeathStarBench/socialNetwork/nginx-web-server/conf/nginx.conf
+            path: /home/vm_test/DeathStarBench/socialNetwork/media-frontend/conf/nginx.conf
             type: File
 status: {}
