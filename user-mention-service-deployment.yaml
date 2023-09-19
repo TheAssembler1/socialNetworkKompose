@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert
+    kompose.version: 1.30.0 (9d8dcb518)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: user-mention-service
+  name: user-mention-service
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: user-mention-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert
+        kompose.version: 1.30.0 (9d8dcb518)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/socialnetwork-default: "true"
+        io.kompose.service: user-mention-service
+    spec:
+      containers:
+        - command:
+            - UserMentionService
+          image: deathstarbench/social-network-microservices:latest
+          name: user-mention-service
+          resources: {}
+          volumeMounts:
+            - mountPath: /social-network-microservices/config
+              name: config
+      hostname: user-mention-service
+      restartPolicy: Always
+      volumes:
+        - name: config 
+          hostPath:
+            path: /home/vm_test/DeathStarBench/socialNetwork/config
+status: {}
