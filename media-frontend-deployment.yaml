@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert
+    kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert --volumes hostPath
     kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
@@ -19,7 +19,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert
+        kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert --volumes hostPath
         kompose.version: 1.30.0 (9d8dcb518)
       creationTimestamp: null
       labels:
@@ -36,18 +36,16 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /usr/local/openresty/nginx/lua-scripts
-              name: lua-scripts
+              name: media-frontend-hostpath0
             - mountPath: /usr/local/openresty/nginx/conf/nginx.conf
-              name: nginx-conf 
+              name: media-frontend-hostpath1
       hostname: media-frontend
       restartPolicy: Always
       volumes:
-        - name: lua-scripts
-          hostPath:
-            path: /home/vm_test/DeathStarBench/socialNetwork/nginx-web-server/lua-scripts
-            type: Directory
-        - name: nginx-conf
-          hostPath:
+        - hostPath:
+            path: /home/vm_test/DeathStarBench/socialNetwork/media-frontend/lua-scripts
+          name: media-frontend-hostpath0
+        - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/media-frontend/conf/nginx.conf
-            type: File
+          name: media-frontend-hostpath1
 status: {}

@@ -6,15 +6,15 @@ metadata:
     kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
-    io.kompose.service: jaeger-agent
-  name: jaeger-agent
+    io.kompose.service: media-mongodb
+  name: media-mongodb
   namespace: default
 spec:
   ports:
-    - name: "16686"
-      port: 16686
-      targetPort: 16686
+    - name: "27024"
+      port: 27024
+      targetPort: 27017
   selector:
-    io.kompose.service: jaeger-agent
+    io.kompose.service: media-mongodb
 status:
   loadBalancer: {}

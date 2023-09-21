@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert
+    kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert --volumes hostPath
     kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert
+        kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert --volumes hostPath
         kompose.version: 1.30.0 (9d8dcb518)
       creationTimestamp: null
       labels:
@@ -28,6 +28,10 @@ spec:
       containers:
         - image: redis
           name: user-timeline-redis
+          ports:
+            - containerPort: 6379
+              hostPort: 6383
+              protocol: TCP
           resources: {}
       hostname: user-timeline-redis
       restartPolicy: Always

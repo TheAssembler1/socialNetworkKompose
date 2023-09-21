@@ -6,15 +6,15 @@ metadata:
     kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
-    io.kompose.service: jaeger-agent
-  name: jaeger-agent
+    io.kompose.service: url-shorten-mongodb
+  name: url-shorten-mongodb
   namespace: default
 spec:
   ports:
-    - name: "16686"
-      port: 16686
-      targetPort: 16686
+    - name: "27021"
+      port: 27021
+      targetPort: 27017
   selector:
-    io.kompose.service: jaeger-agent
+    io.kompose.service: url-shorten-mongodb
 status:
   loadBalancer: {}

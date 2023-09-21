@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: "kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert"
-    kompose.version: "1.30.0 (9d8dcb518)"
+    kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert --volumes hostPath
+    kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
     io.kompose.service: nginx-thrift
@@ -19,8 +19,8 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: "kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert"
-        kompose.version: "1.30.0 (9d8dcb518)"
+        kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert --volumes hostPath
+        kompose.version: 1.30.0 (9d8dcb518)
       creationTimestamp: null
       labels:
         io.kompose.network/socialnetwork-default: "true"
@@ -36,37 +36,36 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /usr/local/openresty/nginx/lua-scripts
-              name: lua-scripts
+              name: nginx-thrift-hostpath0
             - mountPath: /usr/local/openresty/nginx/pages
-              name: pages
+              name: nginx-thrift-hostpath1
             - mountPath: /usr/local/openresty/nginx/conf/nginx.conf
-              name: nginx-conf
+              name: nginx-thrift-hostpath2
             - mountPath: /usr/local/openresty/nginx/jaeger-config.json
-              name: jaeger-config-json
+              name: nginx-thrift-hostpath3
             - mountPath: /gen-lua
-              name: gen-lua
+              name: nginx-thrift-hostpath4
+            - mountPath: /usr/local/openresty/lualib/thrift
+              name: nginx-thrift-hostpath5
       hostname: nginx-thrift
       restartPolicy: Always
       volumes:
-        - name: lua-scripts
-          hostPath:
+        - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/nginx-web-server/lua-scripts
-            type: Directory
-        - name: pages
-          hostPath:
+          name: nginx-thrift-hostpath0
+        - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/nginx-web-server/pages
-            type: Directory
-        - name: nginx-conf
-          hostPath:
+          name: nginx-thrift-hostpath1
+        - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/nginx-web-server/conf/nginx.conf
-            type: File
-        - name: jaeger-config-json
-          hostPath:
+          name: nginx-thrift-hostpath2
+        - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/nginx-web-server/jaeger-config.json
-            type: File
-        - name: gen-lua
-          hostPath:
+          name: nginx-thrift-hostpath3
+        - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/gen-lua
-            type: Directory
+          name: nginx-thrift-hostpath4
+        - hostPath:
+            path: /home/vm_test/DeathStarBench/socialNetwork/docker/openresty-thrift/lua-thrift
+          name: nginx-thrift-hostpath5
 status: {}
-

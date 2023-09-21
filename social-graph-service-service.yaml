@@ -6,15 +6,15 @@ metadata:
     kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
-    io.kompose.service: jaeger-agent
-  name: jaeger-agent
+    io.kompose.service: social-graph-service
+  name: social-graph-service
   namespace: default
 spec:
   ports:
-    - name: "16686"
-      port: 16686
-      targetPort: 16686
+    - name: "10000"
+      port: 10000
+      targetPort: 9090
   selector:
-    io.kompose.service: jaeger-agent
+    io.kompose.service: social-graph-service
 status:
   loadBalancer: {}

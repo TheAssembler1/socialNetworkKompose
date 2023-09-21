@@ -6,15 +6,15 @@ metadata:
     kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
-    io.kompose.service: jaeger-agent
-  name: jaeger-agent
+    io.kompose.service: user-timeline-redis
+  name: user-timeline-redis
   namespace: default
 spec:
   ports:
-    - name: "16686"
-      port: 16686
-      targetPort: 16686
+    - name: "6383"
+      port: 6383
+      targetPort: 6379
   selector:
-    io.kompose.service: jaeger-agent
+    io.kompose.service: user-timeline-redis
 status:
   loadBalancer: {}

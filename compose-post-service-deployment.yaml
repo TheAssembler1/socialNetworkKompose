@@ -1,6 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert --volumes hostPath
+    kompose.version: 1.30.0 (9d8dcb518)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: compose-post-service
   name: compose-post-service
   namespace: default
 spec:
@@ -12,6 +18,10 @@ spec:
     type: Recreate
   template:
     metadata:
+      annotations:
+        kompose.cmd: kompose --file ../DeathStarBench/socialNetwork/docker-compose.yml convert --volumes hostPath
+        kompose.version: 1.30.0 (9d8dcb518)
+      creationTimestamp: null
       labels:
         io.kompose.network/socialnetwork-default: "true"
         io.kompose.service: compose-post-service
@@ -21,15 +31,18 @@ spec:
             - ComposePostService
           image: deathstarbench/social-network-microservices:latest
           name: compose-post-service
+          ports:
+            - containerPort: 9090
+              hostPort: 10001
+              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /social-network-microservices/config
-              name: config
+              name: compose-post-service-hostpath0
       hostname: compose-post-service
       restartPolicy: Always
       volumes:
-        - name: config 
-          hostPath:
+        - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/config
-            type: Directory
+          name: compose-post-service-hostpath0
 status: {}

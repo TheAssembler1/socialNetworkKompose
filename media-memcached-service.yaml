@@ -6,15 +6,15 @@ metadata:
     kompose.version: 1.30.0 (9d8dcb518)
   creationTimestamp: null
   labels:
-    io.kompose.service: jaeger-agent
-  name: jaeger-agent
+    io.kompose.service: media-memcached
+  name: media-memcached
   namespace: default
 spec:
   ports:
-    - name: "16686"
-      port: 16686
-      targetPort: 16686
+    - name: "11215"
+      port: 11215
+      targetPort: 11211
   selector:
-    io.kompose.service: jaeger-agent
+    io.kompose.service: media-memcached
 status:
   loadBalancer: {}
