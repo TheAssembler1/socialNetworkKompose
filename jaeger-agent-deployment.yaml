@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "16686"
+    - name: tcp
       port: 16686
-      targetPort: 16686
   selector:
     io.kompose.service: jaeger-agent
 status:
@@ -53,10 +52,6 @@ spec:
               value: "9411"
           image: jaegertracing/all-in-one:latest
           name: jaeger-agent
-          ports:
-            - containerPort: 16686
-              hostPort: 16686
-              protocol: TCP
           resources: {}
       restartPolicy: Always
 status: {}

@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "10000"
-      port: 10000
-      targetPort: 9090
+    - name: tcp
+      port: 9090
   selector:
     io.kompose.service: social-graph-service
 status:
@@ -53,10 +52,6 @@ spec:
             - SocialGraphService
           image: deathstarbench/social-network-microservices:latest
           name: social-graph-service
-          ports:
-            - containerPort: 9090
-              hostPort: 10000
-              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /social-network-microservices/config

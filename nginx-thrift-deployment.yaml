@@ -11,10 +11,12 @@ metadata:
   name: nginx-thrift
   namespace: default
 spec:
+  type: NodePort
   ports:
-    - name: "8080"
-      port: 8080
-      targetPort: 8080
+  - port: 8080
+    name: http
+    targetPort: 8080
+    nodePort: 31000
   selector:
     io.kompose.service: nginx-thrift
 status:
@@ -51,10 +53,6 @@ spec:
       containers:
         - image: yg397/openresty-thrift:xenial
           name: nginx-thrift
-          ports:
-            - containerPort: 8080
-              hostPort: 8080
-              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /usr/local/openresty/nginx/lua-scripts

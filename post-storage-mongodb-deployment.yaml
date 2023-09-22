@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "27019"
-      port: 27019
-      targetPort: 27017
+    - name: mongo
+      port: 27017
   selector:
     io.kompose.service: post-storage-mongodb
 status:
@@ -50,10 +49,6 @@ spec:
       containers:
         - image: mongo:4.4.6
           name: post-storage-mongodb
-          ports:
-            - containerPort: 27017
-              hostPort: 27019
-              protocol: TCP
           resources: {}
       hostname: post-storage-mongodb
       restartPolicy: Always

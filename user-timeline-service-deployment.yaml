@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "10003"
-      port: 10003
-      targetPort: 9090
+    - name: tcp
+      port: 9090
   selector:
     io.kompose.service: user-timeline-service
 status:
@@ -53,10 +52,6 @@ spec:
             - UserTimelineService
           image: deathstarbench/social-network-microservices:latest
           name: user-timeline-service
-          ports:
-            - containerPort: 9090
-              hostPort: 10003
-              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /social-network-microservices/config

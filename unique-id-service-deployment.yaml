@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "10008"
-      port: 10008
-      targetPort: 9090
+    - name: tcp
+      port: 9090
   selector:
     io.kompose.service: unique-id-service
 status:
@@ -53,10 +52,6 @@ spec:
             - UniqueIdService
           image: deathstarbench/social-network-microservices:latest
           name: unique-id-service
-          ports:
-            - containerPort: 9090
-              hostPort: 10008
-              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /social-network-microservices/config

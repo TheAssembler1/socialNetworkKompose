@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "6380"
-      port: 6380
-      targetPort: 6379
+    - name: redis
+      port: 6379
   selector:
     io.kompose.service: social-graph-redis
 status:
@@ -50,10 +49,6 @@ spec:
       containers:
         - image: redis
           name: social-graph-redis
-          ports:
-            - containerPort: 6379
-              hostPort: 6380
-              protocol: TCP
           resources: {}
       hostname: social-graph-redis
       restartPolicy: Always

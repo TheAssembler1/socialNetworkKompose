@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "11212"
+    - name: tcp
       port: 11212
-      targetPort: 11211
   selector:
     io.kompose.service: post-storage-memcached
 status:
@@ -50,10 +49,6 @@ spec:
       containers:
         - image: memcached
           name: post-storage-memcached
-          ports:
-            - containerPort: 11211
-              hostPort: 11212
-              protocol: TCP
           resources: {}
       hostname: post-storage-memcached
       restartPolicy: Always

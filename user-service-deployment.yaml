@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "10005"
-      port: 10005
-      targetPort: 9090
+    - name: tcp
+      port: 9090
   selector:
     io.kompose.service: user-service
 status:
@@ -53,10 +52,6 @@ spec:
             - UserService
           image: deathstarbench/social-network-microservices:latest
           name: user-service
-          ports:
-            - containerPort: 9090
-              hostPort: 10005
-              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /social-network-microservices/config

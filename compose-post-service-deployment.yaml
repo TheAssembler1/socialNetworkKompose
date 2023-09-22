@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "10001"
-      port: 10001
-      targetPort: 9090
+    - name: tcp
+      port: 9090
   selector:
     io.kompose.service: compose-post-service
 status:
@@ -53,10 +52,6 @@ spec:
             - ComposePostService
           image: deathstarbench/social-network-microservices:latest
           name: compose-post-service
-          ports:
-            - containerPort: 9090
-              hostPort: 10001
-              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /social-network-microservices/config

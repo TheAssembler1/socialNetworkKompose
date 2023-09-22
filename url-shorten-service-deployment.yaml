@@ -12,9 +12,8 @@ metadata:
   namespace: default
 spec:
   ports:
-    - name: "10004"
-      port: 10004
-      targetPort: 9090
+    - name: tcp
+      port: 9090
   selector:
     io.kompose.service: url-shorten-service
 status:
@@ -53,10 +52,6 @@ spec:
             - UrlShortenService
           image: deathstarbench/social-network-microservices:latest
           name: url-shorten-service
-          ports:
-            - containerPort: 9090
-              hostPort: 10004
-              protocol: TCP
           resources: {}
           volumeMounts:
             - mountPath: /social-network-microservices/config
