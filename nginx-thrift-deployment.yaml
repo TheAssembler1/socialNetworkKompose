@@ -9,7 +9,7 @@ metadata:
   labels:
     io.kompose.service: nginx-thrift
   name: nginx-thrift
-  namespace: default
+  namespace: social-network
 spec:
   type: NodePort
   ports:
@@ -32,7 +32,7 @@ metadata:
   labels:
     io.kompose.service: nginx-thrift
   name: nginx-thrift
-  namespace: default
+  namespace: social-network
 spec:
   replicas: 1
   selector:
@@ -53,6 +53,9 @@ spec:
       containers:
         - image: yg397/openresty-thrift:xenial
           name: nginx-thrift
+          ports:
+            - containerPort: 8080
+              hostPort: 8080
           resources: {}
           volumeMounts:
             - mountPath: /usr/local/openresty/nginx/lua-scripts

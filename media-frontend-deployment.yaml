@@ -9,7 +9,7 @@ metadata:
   labels:
     io.kompose.service: media-frontend
   name: media-frontend
-  namespace: default
+  namespace: social-network
 spec:
   type: NodePort
   ports:
@@ -32,7 +32,7 @@ metadata:
   labels:
     io.kompose.service: media-frontend
   name: media-frontend
-  namespace: default
+  namespace: social-network
 spec:
   replicas: 1
   selector:

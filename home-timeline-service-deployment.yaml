@@ -9,11 +9,11 @@ metadata:
   labels:
     io.kompose.service: home-timeline-service
   name: home-timeline-service
-  namespace: default
+  namespace: social-network
 spec:
   ports:
     - name: tcp
-      targetPort: 9090
+      port: 9090
   selector:
     io.kompose.service: home-timeline-service
 status:
@@ -29,7 +29,7 @@ metadata:
   labels:
     io.kompose.service: home-timeline-service
   name: home-timeline-service
-  namespace: default
+  namespace: social-network
 spec:
   replicas: 1
   selector:

@@ -9,7 +9,7 @@ metadata:
   labels:
     io.kompose.service: url-shorten-memcached
   name: url-shorten-memcached
-  namespace: default
+  namespace: social-network
 spec:
   ports:
     - name: tcp
@@ -29,7 +29,7 @@ metadata:
   labels:
     io.kompose.service: url-shorten-memcached
   name: url-shorten-memcached
-  namespace: default
+  namespace: social-network
 spec:
   replicas: 1
   selector:
