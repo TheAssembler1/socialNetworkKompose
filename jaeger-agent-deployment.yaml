@@ -11,9 +11,12 @@ metadata:
   name: jaeger-agent
   namespace: social-network
 spec:
+  type: NodePort
   ports:
     - name: tcp
       port: 16686
+      targetPort: 16686
+      nodePort: 31002
   selector:
     io.kompose.service: jaeger-agent
 status:
@@ -52,6 +55,10 @@ spec:
               value: "9411"
           image: jaegertracing/all-in-one:latest
           name: jaeger-agent
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
       restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/hostname: vmworker2
 status: {}

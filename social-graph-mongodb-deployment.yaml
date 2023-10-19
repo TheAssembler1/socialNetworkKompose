@@ -49,7 +49,11 @@ spec:
       containers:
         - image: mongo:4.4.6
           name: social-graph-mongodb
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
       hostname: social-graph-mongodb
       restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/hostname: vmworker5
 status: {}

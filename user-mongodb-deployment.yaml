@@ -49,7 +49,11 @@ spec:
       containers:
         - image: mongo:4.4.6
           name: user-mongodb
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
       hostname: user-mongodb
       restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/hostname: vmworker9
 status: {}

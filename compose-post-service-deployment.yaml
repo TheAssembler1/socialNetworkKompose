@@ -52,7 +52,9 @@ spec:
             - ComposePostService
           image: deathstarbench/social-network-microservices:latest
           name: compose-post-service
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
           volumeMounts:
             - mountPath: /social-network-microservices/config
               name: compose-post-service-hostpath0
@@ -62,4 +64,6 @@ spec:
         - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/config
           name: compose-post-service-hostpath0
+      nodeSelector:
+        kubernetes.io/hostname: vmworker1
 status: {}

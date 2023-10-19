@@ -54,7 +54,9 @@ spec:
           name: post-storage-service
           ports:
             - containerPort: 9090
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
           volumeMounts:
             - mountPath: /social-network-microservices/config
               name: post-storage-service-hostpath0
@@ -64,4 +66,6 @@ spec:
         - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/config
           name: post-storage-service-hostpath0
+      nodeSelector:
+        kubernetes.io/hostname: vmworker4
 status: {}

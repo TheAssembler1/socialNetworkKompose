@@ -56,7 +56,9 @@ spec:
           ports:
             - containerPort: 8080
               hostPort: 8080
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
           volumeMounts:
             - mountPath: /usr/local/openresty/nginx/lua-scripts
               name: nginx-thrift-hostpath0
@@ -91,4 +93,6 @@ spec:
         - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/docker/openresty-thrift/lua-thrift
           name: nginx-thrift-hostpath5
+      nodeSelector:
+        kubernetes.io/hostname: vmworker2
 status: {}

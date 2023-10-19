@@ -52,7 +52,9 @@ spec:
             - TextService
           image: deathstarbench/social-network-microservices:latest
           name: text-service
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
           volumeMounts:
             - mountPath: /social-network-microservices/config
               name: text-service-hostpath0
@@ -62,4 +64,6 @@ spec:
         - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/config
           name: text-service-hostpath0
+      nodeSelector:
+        kubernetes.io/hostname: vmworker6
 status: {}

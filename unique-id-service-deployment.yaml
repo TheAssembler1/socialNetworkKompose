@@ -52,7 +52,9 @@ spec:
             - UniqueIdService
           image: deathstarbench/social-network-microservices:latest
           name: unique-id-service
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
           volumeMounts:
             - mountPath: /social-network-microservices/config
               name: unique-id-service-hostpath0
@@ -62,4 +64,6 @@ spec:
         - hostPath:
             path: /home/vm_test/DeathStarBench/socialNetwork/config
           name: unique-id-service-hostpath0
+      nodeSelector:
+        kubernetes.io/hostname: vmworker6
 status: {}

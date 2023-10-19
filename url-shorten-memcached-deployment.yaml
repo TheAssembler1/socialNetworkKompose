@@ -49,7 +49,11 @@ spec:
       containers:
         - image: memcached
           name: url-shorten-memcached
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
       hostname: url-shorten-memcached
       restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/hostname: vmworker6
 status: {}

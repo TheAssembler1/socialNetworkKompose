@@ -49,7 +49,11 @@ spec:
       containers:
         - image: redis
           name: social-graph-redis
-          resources: {}
+          resources:
+            limits:
+              cpu: "1"
       hostname: social-graph-redis
       restartPolicy: Always
+      nodeSelector:
+        kubernetes.io/hostname: vmworker5
 status: {}
